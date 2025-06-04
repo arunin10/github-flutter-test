@@ -63,5 +63,6 @@ jobs:
         with:
           artifacts: "build/app/outputs/apk/release/*"
           tag: v1.0.${{ github.run_number}}
+          token: ${{ secrets.GH_PAT }}
 
       # Optional deploy steps here (e.g. upload APK to Firebase App Distribution, deploy web build to a server)
