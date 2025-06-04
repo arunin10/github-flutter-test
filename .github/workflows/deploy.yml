@@ -46,13 +46,13 @@ jobs:
       #     - run: flutter build ios --release --no-codesign
 
       # For web builds:
-      - name: Build Flutter Web
-        run: flutter build web --release
+      # - name: Build Flutter Web
+      #   run: flutter build web --release
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: flutter-build
-          path: build/
+          name: release-apk
+          path: build/app/outputs/apk/release/app-release.apk
 
       # Optional deploy steps here (e.g. upload APK to Firebase App Distribution, deploy web build to a server)
