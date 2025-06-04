@@ -31,6 +31,9 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
+      - name: Run test
+        run: flutter test
+
       - name: Build APK (Android)
         run: flutter build apk --release
 
@@ -49,10 +52,16 @@ jobs:
       # - name: Build Flutter Web
       #   run: flutter build web --release
 
-      - name: Upload build artifacts
-        uses: actions/upload-artifact@v4
+      # - name: Upload build artifacts
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: release-apk
+      #     path: build/app/outputs/apk/release/app-release.apk
+
+      - name: Push to release
+        uses: ncipollo/release-action@v1
         with:
-          name: release-apk
-          path: build/app/outputs/apk/release/app-release.apk
+          artifacts: "build/app/outputs/apk/release/*"
+          tags: v1.0.${{ github.run_number}}
 
       # Optional deploy steps here (e.g. upload APK to Firebase App Distribution, deploy web build to a server)
